@@ -2,9 +2,7 @@ package com.codekarehum.covidtgbot.service;
 
 import com.codekarehum.covidtgbot.model.Center;
 import com.codekarehum.covidtgbot.model.Data;
-import com.codekarehum.covidtgbot.model.Session;
 import com.codekarehum.covidtgbot.model.dto.ResponseDto;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +11,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -87,7 +81,7 @@ public class TelegramBotService {
                     final ResponseEntity<String> exchange = restTemplate.exchange(messageUrl, HttpMethod.GET, entity, String.class);
                     //Sending to sleep, as API has a rate limited on its end, if removed then
                     // API will throw 429 too many requests exception
-                    Thread.sleep(1500);
+                    Thread.sleep(2000);
                 }
             }
 
@@ -108,7 +102,7 @@ public class TelegramBotService {
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
         try {
             //calling vaccine slot data API
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+            final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
             data = objectMapper.readValue(response.getBody(), Data.class);
         } catch (Exception e) {
             log.error("Error found while getting vaccine slots.");
