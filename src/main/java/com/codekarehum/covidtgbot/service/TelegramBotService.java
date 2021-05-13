@@ -27,7 +27,7 @@ public class TelegramBotService {
     RestTemplate restTemplate;
 
     //ENTER YOUR PIN-CODE HERE
-    private String pincCode = "110007";
+    private String pinCode = "110007";
 
     //Telegram API URL to send HTML message
     String sendMessageUrl = "https://api.telegram.org/bot{bot-token}/sendMessage?parse_mode=html&chat_id=-1001488083254&text={encodedMessage}";
@@ -48,7 +48,7 @@ public class TelegramBotService {
         List<ResponseDto> dtos = new ArrayList<>();
         try {
             //Calling get data by PIN API
-            Data data = getVaccineSlotsByPinApi(pincCode);
+            Data data = getVaccineSlotsByPinApi(pinCode);
 
             //Get all centers from API response
             List<Center> centers = data.getCenters();
