@@ -21,7 +21,7 @@ Prerequisites
 
 Video Explanation 
 ---
-1. [How to create a telegram bot]()
+1. [How to create a telegram bot](https://youtu.be/ni-bJxskHNk)
 2. [How to link telegram bot to a group/channel]()
 3. [Connect your bot with the code]()
 
